@@ -1,6 +1,7 @@
 use reqwest;
 use serde_json::{self, Value};
 use tokio;
+use colored::*;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -28,11 +29,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             let game_status = game.get("gameStatusText").unwrap();
     
             println!("🏀 {}: {} - {}: {} ({})", 
-                away_team_tricode.as_str().unwrap(), 
-                away_team_score, 
-                home_team_tricode.as_str().unwrap(), 
-                home_team_score,
-                game_status.as_str().unwrap()
+                away_team_tricode.as_str().unwrap().bold(), 
+                away_team_score.to_string().blue(), 
+                home_team_tricode.as_str().unwrap().bold(), 
+                home_team_score.to_string().blue(),
+                game_status.as_str().unwrap().yellow()
             );
         }
     }
