@@ -14,7 +14,7 @@
 
 ## Todo List
 
-* Add a color crate to stylize the output
+* ~~Add a color crate to stylize the output~~
 * Add proper CLI support with `clap` or other tooling to allow for future customizations
 * Establish a proper Release Branch to create releases for version management
 * Package Release Branch state and setup code for Homebrew public forum
