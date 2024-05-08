@@ -16,5 +16,6 @@
 
 * ~~Add a color crate to stylize the output~~
 * Add proper CLI support with `clap` or other tooling to allow for future customizations
+* Allow for and pre-build cross-platform builds in target (x86_64 MacOS, Windows, Linux)
 * Establish a proper Release Branch to create releases for version management
 * Package Release Branch state and setup code for Homebrew public forum
