@@ -8,7 +8,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let url = "https://nba-prod-us-east-1-mediaops-stats.s3.amazonaws.com/NBA/liveData/scoreboard/todaysScoreboard_00.json";
 
     let response = reqwest::get(url).await?;
-
     let json: Value = response.json().await?;
 
     let game_data = json.get("scoreboard").unwrap();
@@ -18,8 +17,3 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 
 }
-
-
-// fn main() {
-//     println!("Hello, world!");
-// }
