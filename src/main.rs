@@ -13,31 +13,33 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let scoreboard = json.get("scoreboard").unwrap();
     let game_data = scoreboard.get("games").unwrap();
 
-    for game in game_data.as_array().ok_or("Expected an array")? {
+    if game_data.as_array().unwrap().len() > 0 {
+
+        for game in game_data.as_array().ok_or("Expected an array")? {
         
-        let away_team = game.get("awayTeam").unwrap();
-        let home_team = game.get("homeTeam").unwrap();
-
-        let away_team_tricode = away_team.get("teamTricode").unwrap();
-        let away_team_score = away_team.get("score").unwrap();
-        let home_team_tricode = home_team.get("teamTricode").unwrap();
-        let home_team_score = home_team.get("score").unwrap();
-
-        let game_status = game.get("gameStatusText").unwrap();
-
-        println!("🏀 {}: {} - {}: {} ({})", 
-            away_team_tricode.as_str().unwrap(), 
-            away_team_score, 
-            home_team_tricode.as_str().unwrap(), 
-            home_team_score,
-            game_status.as_str().unwrap()
-        );
+            let away_team = game.get("awayTeam").unwrap();
+            let home_team = game.get("homeTeam").unwrap();
+    
+            let away_team_tricode = away_team.get("teamTricode").unwrap();
+            let away_team_score = away_team.get("score").unwrap();
+            let home_team_tricode = home_team.get("teamTricode").unwrap();
+            let home_team_score = home_team.get("score").unwrap();
+    
+            let game_status = game.get("gameStatusText").unwrap();
+    
+            println!("🏀 {}: {} - {}: {} ({})", 
+                away_team_tricode.as_str().unwrap(), 
+                away_team_score, 
+                home_team_tricode.as_str().unwrap(), 
+                home_team_score,
+                game_status.as_str().unwrap()
+            );
+        }
     }
-
-
-
-    // println!("Data: {}", game_data);
-
+    else{
+        println!("😔 There are no games at the moment");
+    }
+    
     Ok(())
 
 }
