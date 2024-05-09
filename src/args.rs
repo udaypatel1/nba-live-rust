@@ -16,6 +16,7 @@ pub fn parse_arguments() -> CliArgs {
                 .long("spotlight")
                 .short('s')
                 .value_name("SPOTLIGHT")
+                .num_args(1)
                 .required(false),
         )
         .get_matches();
