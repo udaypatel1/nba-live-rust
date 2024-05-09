@@ -69,7 +69,7 @@ fn display(game: &Value) {
         away_team_score.to_string().bright_blue(),
         home_team_tricode.as_str().unwrap().bold(),
         home_team_score.to_string().bright_blue(),
-        game_status.as_str().unwrap().yellow()
+        game_status.as_str().unwrap().trim().yellow()
     );
 
 }
