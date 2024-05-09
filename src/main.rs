@@ -1,3 +1,6 @@
+mod args;
+
+use args::parse_arguments;
 use reqwest;
 use serde_json::{self, Value};
 use tokio;
@@ -13,6 +16,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let scoreboard = json.get("scoreboard").unwrap();
     let game_data = scoreboard.get("games").unwrap();
+
+    let cli_args = parse_arguments();
+
+    println!("team spotlight: {:?}", cli_args.team_spotlight);
 
     if game_data.as_array().unwrap().len() > 0 {
 
