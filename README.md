@@ -19,3 +19,5 @@
 * Allow for and pre-build cross-platform builds in target (x86_64 MacOS, Windows, Linux)
 * Establish a proper Release Branch to create releases for version management
 * Package Release Branch state and setup code for Homebrew public forum
+* Make a similar tool for MLB with [this](https://statsapi.mlb.com/api/v1/schedule?sportId=1&sportId=51&sportId=21&startDate=2024-05-08&endDate=2024-05-08&timeZone=America/New_York&gameType=E&&gameType=S&&gameType=R&&gameType=F&&gameType=D&&gameType=L&&gameType=W&&gameType=A&&gameType=C&language=en&leagueId=104&&leagueId=103&&leagueId=160&&leagueId=590&hydrate=team,linescore(matchup,runners),xrefId,story,flags,statusFlags,broadcasts(all),venue(location),decisions,person,probablePitcher,stats,game(content(media(epg),summary),tickets),seriesStatus(useOverride=true)&sortBy=gameDate,gameStatus,gameType)
+
