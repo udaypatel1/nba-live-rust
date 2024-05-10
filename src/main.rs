@@ -22,29 +22,30 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     if game_data.as_array().unwrap().len() > 0 {
 
-        for game in game_data.as_array().ok_or("Expected an array")? {
+        if spotlight.is_some() {
+
+            for game in game_data.as_array().ok_or("Expected an array")? {
         
-            let away_team = game.get("awayTeam").unwrap();
-            let home_team = game.get("homeTeam").unwrap();
+                let away_team = game.get("awayTeam").unwrap();
+                let home_team = game.get("homeTeam").unwrap();
+        
+                let away_team_tricode = away_team.get("teamTricode").unwrap();
+                let home_team_tricode = home_team.get("teamTricode").unwrap();
     
-            let away_team_tricode = away_team.get("teamTricode").unwrap();
-            let home_team_tricode = home_team.get("teamTricode").unwrap();
-
-            if spotlight.is_some() && (
-                spotlight.clone().unwrap().to_uppercase().eq(away_team_tricode) ||
-                spotlight.clone().unwrap().to_uppercase().eq(home_team_tricode)
-            ) {
-                utils::display_per_game(game);
-                break;
-            } else if spotlight.is_some() {
-                println!("😔 That team is not currently playing");
-                break;
+                if spotlight.clone().unwrap().to_uppercase().eq(away_team_tricode) || spotlight.clone().unwrap().to_uppercase().eq(home_team_tricode) {
+                    utils::display_per_game(game);
+                    break;
+                }
             }
-
-            utils::display_per_game(game);
         }
-    }
-    else{
+        else {
+            
+            for game in game_data.as_array().ok_or("Expected as array")? {
+                utils::display_per_game(game);
+            }
+        }
+    } 
+    else {
         println!("😔 There are no games at the moment");
     }
     
