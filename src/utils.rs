@@ -1,9 +1,6 @@
-
-use std::collections::HashMap;
-
 use colored::*;
-use serde_json::{self, json, Value};
-use reqwest::{self, Error};
+use serde_json::{self, Value};
+use reqwest::{self};
 
 pub fn display_per_game(game: &Value) {
 
