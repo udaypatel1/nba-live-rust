@@ -4,10 +4,10 @@
 
 As of version 1.0.0, the brew package is only available for Mac ARM OS users
 
-#### Install
+#### Installation
 
-`brew tap udaypatel1/nba`
-`brew install nba`
+1) `brew tap udaypatel1/nba`
+2) `brew install nba`
 
 ## Get Started
 
