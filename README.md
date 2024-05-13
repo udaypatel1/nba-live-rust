@@ -1,5 +1,14 @@
 # NBA Live: A TUI tool to view live game data
 
+## Consumer Usage
+
+As of version 1.0.0, the brew package is only available for Mac ARM OS users
+
+#### Install
+
+`brew tap udaypatel1/nba`
+`brew install nba`
+
 ## Get Started
 
 1) Clone the repository `git clone https://github.com/udaypatel1/nba-live-rust.git`
