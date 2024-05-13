@@ -1,29 +1,27 @@
 
-use clap::*;
+use clap::{command, Args, Parser, Subcommand};
 
-#[derive(Debug)]
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
 pub struct CliArgs {
-    pub team_spotlight: Option<String>,
+
+    #[command(subcommand)]
+    pub subcommands: Option<SubCommands>,
+
+    #[arg(global=true)]
+    #[clap[long, short]]
+    pub spotlight: Option<String>,
 }
 
-pub fn parse_arguments() -> CliArgs {
+#[derive(Args, Debug)]
+pub struct Live {
 
-    let matches = Command::new("NBA Live!")
-        .about("A terminal based CLI to highlight real time game data")
-        .arg(
-            Arg::new("spotlight")
-                .help("Filter to spotlight a specific team")
-                .long("spotlight")
-                .short('s')
-                .value_name("SPOTLIGHT")
-                .num_args(1)
-                .required(false),
-        )
-        .get_matches();
+    // NOTE: Uncomment if you want custom flags for the `live` subcommand
+    // pub spotlight: Option<String>
+}
 
-    let team_spotlight: Option<String> = matches.get_one::<String>("spotlight").cloned();
-
-    CliArgs {
-        team_spotlight,
-    }
+#[derive(Subcommand, Debug)]
+pub enum SubCommands {
+    #[command(about="Toggles auto-refresh for score data",name="live")]
+    LiveCommands(Live),
 }
