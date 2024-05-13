@@ -1,5 +1,5 @@
 [package]
-name = "nba-live"
+name = "nba"
 version = "0.1.0"
 edition = "2021"
 

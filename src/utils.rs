@@ -26,7 +26,7 @@ pub fn display_per_game(game: &Value) {
 
 pub fn display_all_games(json: Value) {
 
-    let game_data = &json["scoreboard"]["games"];
+    let game_data: &Value = &json["scoreboard"]["games"];
 
     for game in game_data.as_array().unwrap() {
 

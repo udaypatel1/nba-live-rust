@@ -2,7 +2,6 @@ mod args;
 mod utils;
 
 use std::{thread::sleep, time::Duration};
-
 use args::{CliArgs, SubCommands};
 use clap::Parser;
 use serde_json::Value;
@@ -32,13 +31,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 // match is here to pattern match potential other subcommands
                 match command {
                     SubCommands::LiveCommands(_) => {
-
                         loop {
 
+                            print!("{esc}c", esc = 27 as char);
+                            
                             let json = utils::fetch_data(url).await;
-
                             let game_data = &json["scoreboard"]["games"];
-
                             let mut is_found = false;
 
                             for game in game_data.as_array().ok_or("Game Data JSON is Unstructured")? {
@@ -48,13 +46,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             
                                 if spotlight_tricode.to_uppercase().eq(away_team_tricode) || spotlight_tricode.to_uppercase().eq(home_team_tricode) {
                                     is_found = true;
+                                    println!("⏱️ {}", " Live Mode... [Ctrl+C to Exit]\n".dimmed());
                                     utils::display_per_game(game);
                                     break;
                                 }
                             }
             
                             if !is_found { println!("😔 Team data for Tricode [{}] is Unavailable", spotlight_tricode.bold()); break; }
-                            
                             sleep(Duration::from_secs(2));
                         }
                     }
@@ -65,6 +63,21 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 subcommands: Some(command),
                 spotlight: None
             } => {
+
+                match command {
+                    SubCommands::LiveCommands(_) => {
+
+                        loop {
+                            print!("{esc}c", esc = 27 as char);
+
+                            let json = utils::fetch_data(url).await;
+
+                            println!("⏱️ {}", " Live Mode... [Ctrl+C to Exit]\n".dimmed());
+                            utils::display_all_games(json);
+                            sleep(Duration::from_secs(2));
+                        }
+                    },
+                }
             },
 
             CliArgs {
