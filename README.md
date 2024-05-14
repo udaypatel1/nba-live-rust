@@ -25,6 +25,7 @@ As of version 1.0.0, the brew package is only available for Mac ARM OS users
 
 * ~~Add a color crate to stylize the output~~
 * ~~Add proper CLI support with `clap` or other tooling to allow for future customizations~~
+* Create a better visual output of score printouts (boxed? grid? centered? maybe behind a flag?)
 * Allow for and pre-build cross-platform builds in target (x86_64 MacOS, Windows, Linux)
 * Establish a proper Release Branch to create releases for version management
 * Package Release Branch state and setup code for Homebrew public forum
